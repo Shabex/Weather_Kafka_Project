@@ -40,6 +40,8 @@ producer = KafkaProducer(
 while True:
     weather_data = get_weather_data()
     topic = 'open_weather_data'
-    producer.send(topic, value=weather_data)
+    for data in weather_data:
+        producer.send(topic, value=data)
+
     print(f"Producer: {weather_data}")
     time.sleep(5)
